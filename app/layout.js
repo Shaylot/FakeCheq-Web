@@ -6,8 +6,8 @@ import "swiper/css/pagination"
 import 'swiper/css/free-mode';
 import { dmSans } from '@/lib/font'
 export const metadata = {
-    title: 'Logistiq',
-    description: 'Transport& logistic react next Js template',
+    title: 'Deepfake Detection',
+    description: 'Deepfake Detection',
 }
 
 export default function RootLayout({ children }) {
