@@ -26,6 +26,18 @@ const ModelSelector = ({ models, onSelectModel, isMobile }) => {
                     </div>
                 </div>
             ))}
+            <div
+                    className={`btn-box`}
+                    onClick={() => handleModelClick('all')}
+                >
+                    <div className="thm-btn"  style={{marginTop:20,backgroundColor:selectedModel=='all'?"#062E39":"#fd5523", cursor:"pointer"}}>
+                        All
+                        <span className="hover-btn hover-bx"></span>
+                        <span className="hover-btn hover-bx2"></span>
+                        <span className="hover-btn hover-bx3"></span>
+                        <span className="hover-btn hover-bx4"></span>
+                    </div>
+                </div>
         </div>
     );
 };

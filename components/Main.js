@@ -9,6 +9,7 @@ const Main = ({isMobile}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedModel, setSelectedModel] = useState("");
   const [results, setResults] = useState("");
+  const [resultsArray, setResultsArray] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const models = ["MobileNet V3", "ResNet", "InceptionNet"];
@@ -21,17 +22,29 @@ const Main = ({isMobile}) => {
     }
 
     const formData = new FormData();
-    console.log("yo",selectedImage)
     formData.append("image", selectedImage);
     formData.append("model", selectedModel);
 
-    const response = await fetch("http://127.0.0.1:5000/inference", {
-      method: "POST",
-      body: formData,
-    });
+    let response;
 
-    const data = await response.json();
-    setResults(data.results);
+    if(selectedModel=='all'){
+       response = await fetch("http://127.0.0.1:5000/inferenceAll", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      const data2 = data.results;
+      setResultsArray(data2);
+      setResults('');
+    }else{
+      response = await fetch("http://127.0.0.1:5000/inference", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      setResults(data.results);
+      setResultsArray(null);
+    }
     setIsLoading(false);
   };
 
@@ -61,6 +74,13 @@ const Main = ({isMobile}) => {
                         <span className="hover-btn hover-bx4"></span>
                     </div> </div>}
                 {results&&!isLoading&&<p style={{color:"White",fontSize:20, marginTop:20}}>{results}</p>}
+                <div style={{display:"flex", flexDirection:"column"}}>
+                {resultsArray&&!isLoading&&resultsArray.map((item, id)=>(<div style={{display:"flex", flexDirection:"row", width:"330px",justifyContent:"space-between"}}>
+                  <div style={{color:"White",fontSize:17, marginTop:20}}>{item[0]}</div>
+                  <div style={{color:"White",fontSize:17, marginTop:20}}>{item[1]}</div>
+                  </div>))}
+                </div>
+
       </div>
     </div>
   );

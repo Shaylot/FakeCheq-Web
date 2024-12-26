@@ -59,7 +59,7 @@ export default function Banner() {
             <div className="" >
                 <Swiper {...swiperOptions} className="slider-one__carousel owl-carousel owl-theme">
                     <SwiperSlide>
-                        <div className="slider-one__single" style={{height:isMobile?"760px":"1000px"}}>
+                        <div className="slider-one__single" style={{height:isMobile?"1060px":"1000px"}}>
                             <div className="slider-one__single-bg"
                                 style={{ backgroundImage: 'url(https://wallpapercave.com/wp/w6Nm03D.jpg)' }} ></div>
                             <div className="shape1"></div>
